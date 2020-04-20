@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+puts "Please, enter your name"
+player1 = gets.chomp
+
+puts "Please, enter your name"
+player2 = gets.chomp
+
+puts "Choose 'X' or 'O'"
+player_choice = gets.chomp
+
+#         | 1 | 2 | 3 |
+#         -------------
+#         | 4 | 5 | 6 |
+#         -------------
+#         | 7 | 8 | 9 |
+
+puts "Choose the number to put your #{player_choice}"
+
+player1_move = gets.chomp
