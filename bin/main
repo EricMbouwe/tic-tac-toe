@@ -6,15 +6,44 @@ player1 = gets.chomp
 puts "Please, enter your name"
 player2 = gets.chomp
 
-puts "Choose 'X' or 'O'"
-player_choice = gets.chomp
+puts "Player 1 choose 'X' or 'O'"
+player1_choice = gets.chomp
+player2_choice = ''
 
-#         | 1 | 2 | 3 |
-#         -------------
-#         | 4 | 5 | 6 |
-#         -------------
-#         | 7 | 8 | 9 |
+if player1_choice === 'X'
+    player2_choice << 'O'
+elsif player1_choice === 'O'
+    player2_choice << 'X'
+end
 
-puts "Choose the number to put your #{player_choice}"
+puts "\nChoose a number on the board to make your move\n\n"
+   puts     '| 1 | 2 | 3 |'
+   puts     '-------------'
+   puts    '| 4 | 5 | 6 |'
+   puts    '-------------'
+   puts    '| 7 | 8 | 9 |'
 
+val = (1..9).each { |x| x}
+puts "\n#{player1}, make your move"
 player1_move = gets.chomp
+if player1_move != val
+  puts 'wrong value, enter a new one between 1 and 9.'
+  puts "#{player1}, make your move"
+  player1_move = gets.chomp
+end
+
+puts "#{player2}, make your move"
+player2_move = gets.chomp
+if player2_move != val
+    puts 'wrong value, enter a new one between 1 and 9.'
+    puts "#{player2}, make your move"
+    player2_move = gets.chomp
+end
+
+gameboard = [[1,2,3],[4,5,6], [7,8,9]]
+
+puts ' ___ ___ ___'
+puts '|___|___|___|'
+puts '|___|___|___|'
+puts '|___|___|___|'
+
