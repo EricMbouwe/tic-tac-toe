@@ -1,55 +1,105 @@
 #!/usr/bin/env ruby
 
-puts "Please, enter your name"
-player1 = gets.chomp
+# puts "Player 1, enter your name please"
+# player1 = gets.chomp
 
-puts "Please, enter your name"
-player2 = gets.chomp
+# puts "Player 2, enter your name please"
+# player2 = gets.chomp
 
-puts "#{player1} choose 'X' or 'O'"
-choice1 = gets.chomp
-choice2 = ''
+# puts "#{player1} choose 'X' or 'O'"
+# choice1 = gets.chomp
+# choice2 = ''
 
-until choice1 === 'X' || choice1 === 'O'
-    puts "wrong value, choose 'X' or 'O'." 
-    choice1 = gets.chomp
-end
-    if choice1 === 'X'
-        choice2 << 'O'
-    elsif choice1 === 'O'
-        choice2 << 'X'
+# until choice1 === 'X' || choice1 === 'O'
+#     puts "wrong value, choose 'X' or 'O'." 
+#     choice1 = gets.chomp
+# end
+#     if choice1 === 'X'
+#         choice2 << 'O'
+#     elsif choice1 === 'O'
+#         choice2 << 'X'
+#     end
+
+#     puts choice2
+
+# puts "\nChoose a number on the board to make your move\n\n"
+
+#    puts    '-------------' 
+#    puts    '| 1 | 2 | 3 |'
+#    puts    '-------------'
+#    puts    '| 4 | 5 | 6 |'
+#    puts    '-------------'
+#    puts    '| 7 | 8 | 9 |'
+#    puts    '-------------'
+
+# puts "\n#{player1}, make your move"
+# player1_move = gets.chomp
+#   puts 'wrong value, enter a new one between 1 and 9.'
+#   puts 'position already taken! choose another one'
+#   puts "#{player1}, make your move"
+#   player1_move = gets.chomp
+
+# puts "#{player2}, make your move"
+# move2 = gets.chomp
+#     puts 'wrong value, enter a new one between 1 and 9.'
+#     puts 'position already taken! choose another one'
+#     puts "#{player2}, make your move"
+#     move2 = gets.chomp
+
+
+# gameboard = [[1,2,3],[4,5,6], [7,8,9]]
+gameboard = [['-------------'], ['|','   ','|','   ','|','   ','|'], ['-------------'], ['|','   ','|','   ','|','   ','|'], ['-------------'], ['|','   ','|','   ','|','   ','|'], ['-------------']]
+gameboard.each do |row|
+    row.each do |c|
+        print c
     end
-
-    puts choice2
-
-puts "\nChoose a number on the board to make your move\n\n"
-   puts     '| 1 | 2 | 3 |'
-   puts     '-------------'
-   puts    '| 4 | 5 | 6 |'
-   puts    '-------------'
-   puts    '| 7 | 8 | 9 |'
-
-val = (1..9).each { |x| x}
-puts "\n#{player1}, make your move"
-player1_move = gets.chomp
-if player1_move != val
-  puts 'wrong value, enter a new one between 1 and 9.'
-  puts "#{player1}, make your move"
-  player1_move = gets.chomp
+    puts
 end
 
-puts "#{player2}, make your move"
-player2_move = gets.chomp
-if player2_move != val
-    puts 'wrong value, enter a new one between 1 and 9.'
-    puts "#{player2}, make your move"
-    player2_move = gets.chomp
+case move1
+when 1
+    gameboard[1][1] = choice1
+when 2
+    gameboard[1][3] = choice1
+when 3
+    gameboard[1][5] = choice1
+when 4
+    gameboard[3][1] = choice1
+when 5
+    gameboard[3][3] = choice1
+when 6
+    gameboard[3][5] = choice1
+when 7
+    gameboard[5][1] = choice1
+when 8
+    gameboard[5][3] = choice1
+when 9
+    gameboard[5][5] = choice1
+else
+  "You entered #{move} -- Not a valid position. enter a number between 1 and 9"
 end
 
-gameboard = [[1,2,3],[4,5,6], [7,8,9]]
 
-puts ' ___ ___ ___'
-puts '|___|___|___|'
-puts '|___|___|___|'
-puts '|___|___|___|'
+case move2
+when 1
+    gameboard[1][1] = choice2
+when 2
+    gameboard[1][3] = choice2
+when 3
+    gameboard[1][5] = choice2
+when 4
+    gameboard[3][1] = choice2
+when 5
+    gameboard[3][3] = choice2
+when 6
+    gameboard[3][5] = choice2
+when 7
+    gameboard[5][1] = choice2
+when 8
+    gameboard[5][3] = choice2
+when 9
+    gameboard[5][5] = choice2
+else
+  "You entered #{move} -- Not a valid position. enter a number between 1 and 9"
+end
 
