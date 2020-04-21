@@ -47,7 +47,7 @@ Style/HashTransformValues:
   Enabled: false
 
 Style/CaseEquality:
-  Enabled: false
+  Enabled: true
 
 Layout/HashAlignment:
   EnforcedColonStyle: key
