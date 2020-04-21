@@ -11,7 +11,7 @@ Layout/LineLength:
 Metrics/MethodLength:
   Max: 500
 Metrics/AbcSize:
-  Max: 500
+  Max: 300
 Metrics/ClassLength:
   Max: 150
 Metrics/BlockLength:
@@ -19,11 +19,11 @@ Metrics/BlockLength:
   Max: 30
 
 Metrics/ModuleLength:
-  Max: 500
+  Max: 200
 Metrics/CyclomaticComplexity:
-  Enabled: true
+  Enabled: false
 Metrics/PerceivedComplexity:
-  Enabled: true
+  Enabled: false
 
 
 Style/Documentation:
@@ -37,6 +37,8 @@ Style/AndOr:
 Style/DefWithParentheses:
   Enabled: false
 Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/GlobalVars:
   Enabled: false
 
 Style/HashEachMethods:
