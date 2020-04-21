@@ -51,11 +51,8 @@ end
 
 def placement(gameboard, pos, player)
   choice = ''
-  if player == 'player1'
-    choice = ' X '
-  elsif player == 'player2'
-    choice = ' O '
-  end
+  choice = ' X ' if player == 'player1'
+  choice = ' O ' if player == 'player2'
 
   if pos == 1
     gameboard[1][1] = choice
