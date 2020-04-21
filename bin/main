@@ -10,6 +10,16 @@ gameboard = [
   ['-------------']
 ]
 
+fakeboard = [
+  ['-------------'],
+  ['|', ' 1 ', '|', ' 2 ', '|', ' 3 ', '|'],
+  ['-------------'],
+  ['|', ' 4 ', '|', ' 5 ', '|', ' 6 ', '|'],
+  ['-------------'],
+  ['|', ' 7 ', '|', ' 8 ', '|', ' 9 ', '|'],
+  ['-------------']
+]
+
 puts 'Welcome to the Tic Tac Toe game'
 puts 'I hope that you will have fun :('
 puts
@@ -43,13 +53,13 @@ $choice2 = 'X' if $choice == 'O'
 puts "\nCool! #{player1.capitalize}'s move is represented by '#{$choice}' and #{player2.capitalize}'s move is represented by '#{$choice2}'."
 puts "\nNow, choose a number on the board to make your move\n\n"
 
-puts '-------------'
-puts '| 1 | 2 | 3 |'
-puts '-------------'
-puts '| 4 | 5 | 6 |'
-puts '-------------'
-puts '| 7 | 8 | 9 |'
-puts '-------------'
+# puts '-------------'
+# puts '| 1 | 2 | 3 |'
+# puts '-------------'
+# puts '| 4 | 5 | 6 |'
+# puts '-------------'
+# puts '| 7 | 8 | 9 |'
+# puts '-------------'
 
 def display_board(gameboard)
   gameboard.each do |row|
@@ -92,6 +102,8 @@ def placement(gameboard, pos, player)
     puts 'Wrong position given, enter a number between 1 and 9'
   end
 end
+
+display_board(fakeboard)
 
 loop do
   puts "\n#{player1.capitalize}, make your move"
