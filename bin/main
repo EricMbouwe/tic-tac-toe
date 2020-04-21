@@ -32,13 +32,13 @@ end
 
 puts "\nChoose a number on the board to make your move\n\n"
 
-puts    '-------------'
-puts    '| 1 | 2 | 3 |'
-puts    '-------------'
-puts    '| 4 | 5 | 6 |'
-puts    '-------------'
-puts    '| 7 | 8 | 9 |'
-puts    '-------------'
+puts '-------------'
+puts '| 1 | 2 | 3 |'
+puts '-------------'
+puts '| 4 | 5 | 6 |'
+puts '-------------'
+puts '| 7 | 8 | 9 |'
+puts '-------------'
 
 def display_board(gameboard)
   gameboard.each do |row|
