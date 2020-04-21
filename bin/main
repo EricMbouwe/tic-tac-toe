@@ -1,24 +1,30 @@
 #!/usr/bin/env ruby
 
-gameboard = [['-------------'], ['|', '   ', '|', '   ', '|', '   ', '|'], ['-------------'], ['|', '   ', '|', '   ', '|', '   ', '|'], ['-------------'], ['|', '   ', '|', '   ', '|', '   ', '|'], ['-------------']]
+gameboard = [['-------------'], 
+            ['|', '   ', '|', '   ', '|', '   ', '|'], 
+            ['-------------'], 
+            ['|', '   ', '|', '   ', '|', '   ', '|'], 
+            ['-------------'], 
+            ['|', '   ', '|', '   ', '|', '   ', '|'], 
+            ['-------------']]
 
-puts "Player 1, enter your name please"
+puts 'Player 1, enter your name please'
 player1 = gets.chomp
 
-puts "Player 2, enter your name please"
+puts 'Player 2, enter your name please'
 player2 = gets.chomp
 
 puts "#{player1} choose 'X' or 'O'"
 choice1 = gets.chomp
 choice2 = ''
 
-until choice1 === 'X' || choice1 === 'O'
+until choice1 == 'X' || choice1 == 'O'
   puts "wrong value, choose 'X' or 'O'."
   choice1 = gets.chomp
 end
-if choice1 === 'X'
+if choice1 == 'X'
   choice2 << 'O'
-elsif choice1 === 'O'
+elsif choice1 == 'O'
   choice2 << 'X'
 end
 
@@ -32,7 +38,7 @@ puts    '-------------'
 puts    '| 7 | 8 | 9 |'
 puts    '-------------'
 
-def self.displayBoard(gameboard)
+def displayBoard(gameboard)
   gameboard.each do |row|
     row.each do |c|
       print c
@@ -41,36 +47,36 @@ def self.displayBoard(gameboard)
   end
 end
 
-def self.placement(gameboard, pos, player)
+def placement(gameboard, pos, player)
   choice = ''
-  if player === "player1"
+  if player == 'player1'
     choice = ' X '
-  elsif player === "player2"
+  elsif player == 'player2'
     choice = ' O '
   end
 
-  if pos === 1
+  if pos == 1
     gameboard[1][1] = choice
-  elsif pos === 2
+  elsif pos == 2
     gameboard[1][3] = choice
-  elsif pos === 3
+  elsif pos == 3
     gameboard[1][5] = choice
-  elsif pos === 4
+  elsif pos == 4
     gameboard[3][1] = choice
-  elsif pos === 5
+  elsif pos == 5
     gameboard[3][3] = choice
-  elsif pos === 6
+  elsif pos == 6
     gameboard[3][5] = choice
-  elsif pos === 7
+  elsif pos == 7
     gameboard[5][1] = choice
-  elsif pos === 8
+  elsif pos == 8
     gameboard[5][3] = choice
-  elsif pos === 9
+  elsif pos == 9
     gameboard[5][5] = choice
   else
     puts 'wrong position given, enter a number between 1 and 9'
     while pos < 1 || pos > 9
-      puts "try again"
+      puts 'try again'
       pos = gets.chomp.to_i
     end
   end
@@ -79,11 +85,11 @@ end
 4.times do
   puts "\n#{player1}, make your move"
   pos1 = gets.chomp.to_i
-  placement(gameboard, pos1, "player1")
+  placement(gameboard, pos1, 'player1')
   displayBoard(gameboard)
 
   puts "#{player2}, make your move"
   pos2 = gets.chomp.to_i
-  placement(gameboard, pos2, "player2")
+  placement(gameboard, pos2, 'player2')
   displayBoard(gameboard)
 end
