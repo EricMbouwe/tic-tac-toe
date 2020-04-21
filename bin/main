@@ -60,6 +60,11 @@ def placement(gameboard, pos, player)
   sym = " #{$choice} " if player == 'player1'
   sym = " #{$choice2} " if player == 'player2'
 
+  while pos < 1 || pos > 9
+    puts 'Wrong position given, enter a number between 1 and 9'
+    puts 'Try again'
+    pos = gets.chomp.to_i
+  end
   if pos == 1
     gameboard[1][1] = sym
   elsif pos == 2
@@ -80,10 +85,6 @@ def placement(gameboard, pos, player)
     gameboard[5][5] = sym
   else
     puts 'Wrong position given, enter a number between 1 and 9'
-    while pos < 1 || pos > 9
-      puts 'Try again'
-      pos = gets.chomp.to_i
-    end
   end
 end
 
