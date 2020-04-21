@@ -1,12 +1,14 @@
 #!/usr/bin/env ruby
 
-gameboard = [['-------------'], 
-            ['|', '   ', '|', '   ', '|', '   ', '|'], 
-            ['-------------'], 
-            ['|', '   ', '|', '   ', '|', '   ', '|'], 
-            ['-------------'], 
-            ['|', '   ', '|', '   ', '|', '   ', '|'], 
-            ['-------------']]
+gameboard = [
+  ['-------------'],
+  ['|', '   ', '|', '   ', '|', '   ', '|'],
+  ['-------------'],
+  ['|', '   ', '|', '   ', '|', '   ', '|'],
+  ['-------------'],
+  ['|', '   ', '|', '   ', '|', '   ', '|'],
+  ['-------------']
+]
 
 puts 'Player 1, enter your name please'
 player1 = gets.chomp
@@ -18,7 +20,7 @@ puts "#{player1} choose 'X' or 'O'"
 choice1 = gets.chomp
 choice2 = ''
 
-until choice1 == 'X' || choice1 == 'O'
+until choice1.include?('X') || choice1.include?('O')
   puts "wrong value, choose 'X' or 'O'."
   choice1 = gets.chomp
 end
@@ -38,7 +40,7 @@ puts    '-------------'
 puts    '| 7 | 8 | 9 |'
 puts    '-------------'
 
-def displayBoard(gameboard)
+def display_board(gameboard)
   gameboard.each do |row|
     row.each do |c|
       print c
@@ -86,10 +88,10 @@ end
   puts "\n#{player1}, make your move"
   pos1 = gets.chomp.to_i
   placement(gameboard, pos1, 'player1')
-  displayBoard(gameboard)
+  display_board gameboard
 
   puts "#{player2}, make your move"
   pos2 = gets.chomp.to_i
   placement(gameboard, pos2, 'player2')
-  displayBoard(gameboard)
+  display_board gameboard
 end
