@@ -25,9 +25,9 @@ until choice1.include?('X') || choice1.include?('O')
   choice1 = gets.chomp
 end
 if choice1 == 'X'
-  choice2 << 'O'
+  choice2 = 'O'
 elsif choice1 == 'O'
-  choice2 << 'X'
+  choice2 = 'X'
 end
 
 puts "\nChoose a number on the board to make your move\n\n"
@@ -81,7 +81,7 @@ def placement(gameboard, pos, player)
   end
 end
 
-4.times do
+loop do
   puts "\n#{player1}, make your move"
   pos1 = gets.chomp.to_i
   placement(gameboard, pos1, 'player1')
