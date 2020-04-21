@@ -16,18 +16,17 @@ player1 = gets.chomp
 puts 'Player 2, enter your name please'
 player2 = gets.chomp
 
-puts "#{player1} choose 'X' or 'O'"
-choice1 = gets.chomp
-choice2 = ''
+puts "#{player1.capitalize} choose 'X' or 'O'"
+$choice = gets.chomp
 
-until choice1.include?('X') || choice1.include?('O')
+until $choice.include?('X') || $choice.include?('O')
   puts "wrong value, choose 'X' or 'O'."
-  choice1 = gets.chomp
+  $choice = gets.chomp
 end
-if choice1 == 'X'
-  choice2 = 'O'
-elsif choice1 == 'O'
-  choice2 = 'X'
+if $choice == 'X'
+  $choice2 = 'O'
+elsif $choice == 'O'
+  $choice2 = 'X'
 end
 
 puts "\nChoose a number on the board to make your move\n\n"
@@ -50,44 +49,44 @@ def display_board(gameboard)
 end
 
 def placement(gameboard, pos, player)
-  choice = ''
-  choice = ' X ' if player == 'player1'
-  choice = ' O ' if player == 'player2'
+  sym = ''
+  sym = " #{$choice} " if player == 'player1'
+  sym = " #{$choice2} " if player == 'player2'
 
   if pos == 1
-    gameboard[1][1] = choice
+    gameboard[1][1] = sym
   elsif pos == 2
-    gameboard[1][3] = choice
+    gameboard[1][3] = sym
   elsif pos == 3
-    gameboard[1][5] = choice
+    gameboard[1][5] = sym
   elsif pos == 4
-    gameboard[3][1] = choice
+    gameboard[3][1] = sym
   elsif pos == 5
-    gameboard[3][3] = choice
+    gameboard[3][3] = sym
   elsif pos == 6
-    gameboard[3][5] = choice
+    gameboard[3][5] = sym
   elsif pos == 7
-    gameboard[5][1] = choice
+    gameboard[5][1] = sym
   elsif pos == 8
-    gameboard[5][3] = choice
+    gameboard[5][3] = sym
   elsif pos == 9
-    gameboard[5][5] = choice
+    gameboard[5][5] = sym
   else
-    puts 'wrong position given, enter a number between 1 and 9'
+    puts 'Wrong position given, enter a number between 1 and 9'
     while pos < 1 || pos > 9
-      puts 'try again'
+      puts 'Try again'
       pos = gets.chomp.to_i
     end
   end
 end
 
 loop do
-  puts "\n#{player1}, make your move"
+  puts "\n#{player1.capitalize}, make your move"
   pos1 = gets.chomp.to_i
   placement(gameboard, pos1, 'player1')
   display_board gameboard
 
-  puts "#{player2}, make your move"
+  puts "#{player2.capitalize}, make your move"
   pos2 = gets.chomp.to_i
   placement(gameboard, pos2, 'player2')
   display_board gameboard
