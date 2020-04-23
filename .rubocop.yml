@@ -7,7 +7,7 @@ AllCops:
   DisplayCopNames: true
 
 Layout/LineLength:
-  Max: 120
+  Max: 200
 Metrics/MethodLength:
   Max: 500
 Metrics/AbcSize:
@@ -50,6 +50,8 @@ Style/HashTransformValues:
 
 Style/CaseEquality:
   Enabled: true
+Style/GuardClause:
+  Enabled: false
 
 Layout/HashAlignment:
   EnforcedColonStyle: key
