@@ -130,17 +130,12 @@ def placement(gameboard, pos, player)
 end
 
 def winner(winning)
-  winning.each do |list|
-    if (list - $player1_positions).empty?
-      return "Congratulations #{$player1.capitalize}, you win!!!"
-    elsif (list - $player2_positions).empty?
-      return "Congratulations #{$player2.capitalize}, you win!!!"
-    elsif $player1_positions.size + $player2_positions.size == 9
-      return 'draw game'.upcase
-    else
-      return ''
-    end
+  winning.each do |cases|
+    return "Congratulations #{$player1.capitalize}, you win!!!" if (cases - $player1_positions).empty?
+    return "Congratulations #{$player2.capitalize}, you win!!!" if (cases - $player2_positions).empty?
+    return 'draw game (:'.upcase if $player1_positions.size + $player2_positions.size == 9
   end
+  ''
 end
 
 display_board(fakeboard)
@@ -178,3 +173,4 @@ loop do
     break
   end
 end
+puts "\nPlay Again ?"
