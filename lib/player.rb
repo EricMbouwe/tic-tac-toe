@@ -1,9 +1,10 @@
 class Player
-	attr_accessor :name, :positions
+	attr_accessor :name, :positions, :sym
 
 	def initialize
 		@name = name
 		@positions = []
+		@sym = ''
 	end
 
 	def move(gameboard, position, sym)
