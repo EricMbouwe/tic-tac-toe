@@ -7,19 +7,19 @@ AllCops:
   DisplayCopNames: true
 
 Layout/LineLength:
-  Max: 220
+  Max: 120
 Metrics/MethodLength:
-  Max: 500
+  Max: 20
 Metrics/AbcSize:
-  Max: 500
+  Max: 50
 Metrics/ClassLength:
   Max: 150
 Metrics/BlockLength:
   ExcludedMethods: ['describe']
-  Max: 50
+  Max: 30
 
 Metrics/ModuleLength:
-  Max: 500
+  Max: 200
 Metrics/CyclomaticComplexity:
   Enabled: false
 Metrics/PerceivedComplexity:
@@ -37,7 +37,7 @@ Style/AndOr:
 Style/DefWithParentheses:
   Enabled: false
 Style/FrozenStringLiteralComment:
-  Enabled: false
+  EnforcedStyle: never
 
 Style/HashEachMethods:
   Enabled: false
@@ -47,7 +47,7 @@ Style/HashTransformValues:
   Enabled: false
 
 Style/CaseEquality:
-  Enabled: true
+  Enabled: false
 
 Layout/HashAlignment:
   EnforcedColonStyle: key
