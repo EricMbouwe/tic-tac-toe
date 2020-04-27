@@ -18,7 +18,6 @@ fakeboard = [
   ['-------------']
 ]
 
-
 puts 'Welcome to the Tic Tac Toe game'
 puts 'I hope that you will have fun ):'
 
@@ -55,11 +54,11 @@ game.display_board(fakeboard)
 loop do
   puts "\n#{name1.capitalize}, make your move"
   pos1 = gets.chomp.to_i
-  game.check_move(pos1)
-  while game.check_move(pos1)
-    puts game.invalid_move
-    pos1 = gets.chomp.to_i
-  end
+  # game.check_move(pos1)
+  # while game.check_move(pos1)
+  #   puts game.invalid_move
+  #   pos1 = gets.chomp.to_i
+  # end
   while game.check_taken_position(pos1, player1, player2)
     puts game.invalid_position
     pos1 = gets.chomp.to_i
@@ -96,4 +95,3 @@ loop do
   end
 end
 puts "\nPlay Again ?"
-

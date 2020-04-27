@@ -41,9 +41,7 @@ class Game
   end
 
   def check_move(position)
-    if position < 1 || position > 9
-      invalid_move
-    end
+    invalid_move if position < 1 || position > 9
   end
 
   def invalid_move
@@ -51,10 +49,10 @@ class Game
   end
 
   def check_taken_position(position, player1, player2)
-    if player1.positions.include?(position) || player2.positions.include?(position)
-      invalid_position
-    elsif position < 1 || position > 9
+    if position < 1 || position > 9
       invalid_move
+    elsif player2.positions.include?(position) || player1.positions.include?(position)
+      invalid_position
     end
   end
 
@@ -63,11 +61,11 @@ class Game
   end
 
   def winner(winning, player1, player2)
-	winning.each do |list|
-	  return "Congratulations #{player1.name.capitalize}, you win!!!" if (list - player1.positions).empty?
-	  return "Congratulations #{player2.name.capitalize}, you win!!!" if (list - player2.positions).empty?
-	  return 'draw game (:'.upcase if player1.positions.size + player2.positions.size == 9
-	end
-	''
+    winning.each do |list|
+      return "Congratulations #{player1.name.capitalize}, you win!!!" if (list - player1.positions).empty?
+      return "Congratulations #{player2.name.capitalize}, you win!!!" if (list - player2.positions).empty?
+      return 'Draw (:'.upcase if player1.positions.size + player2.positions.size == 9
+    end
+    ''
   end
 end
