@@ -49,7 +49,7 @@ class Game
   end
 
   def check_taken_position(position, player1, player2)
-    invalid_position if player1.positions.include?(position) ||  player2.positions.include?(position)
+    invalid_position if player1.positions.include?(position) || player2.positions.include?(position)
   end
 
   def invalid_position
