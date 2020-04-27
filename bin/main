@@ -94,8 +94,4 @@ loop do
     break
   end
 end
-<<<<<<< HEAD
 puts "\nPlay Again ?"
-=======
-puts "\nPlay Again ?"
->>>>>>> 3862ee460cab09ef09a670c19756f12f8dfd100f
