@@ -1,0 +1,176 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+gameboard = [
+  ['-------------'],
+  ['|', '   ', '|', '   ', '|', '   ', '|'],
+  ['-------------'],
+  ['|', '   ', '|', '   ', '|', '   ', '|'],
+  ['-------------'],
+  ['|', '   ', '|', '   ', '|', '   ', '|'],
+  ['-------------']
+]
+
+fakeboard = [
+  ['-------------'],
+  ['|', ' 1 ', '|', ' 2 ', '|', ' 3 ', '|'],
+  ['-------------'],
+  ['|', ' 4 ', '|', ' 5 ', '|', ' 6 ', '|'],
+  ['-------------'],
+  ['|', ' 7 ', '|', ' 8 ', '|', ' 9 ', '|'],
+  ['-------------']
+]
+
+$player1_positions = []
+$player2_positions = []
+
+row1 = [1, 2, 3]
+row2 = [4, 5, 6]
+row3 = [7, 8, 9]
+col1 = [1, 4, 7]
+col2 = [2, 5, 8]
+col3 = [3, 6, 9]
+cross1 = [1, 5, 9]
+cross2 = [3, 5, 7]
+
+winning = []
+winning.push(row1)
+winning.push(row2)
+winning.push(row3)
+winning.push(col1)
+winning.push(col2)
+winning.push(col3)
+winning.push(cross1)
+winning.push(cross2)
+
+puts 'Welcome to the Tic Tac Toe game'
+puts 'I hope that you will have fun ):'
+puts
+
+puts 'Player 1, enter your name please'
+$player1 = gets.chomp.gsub(/\s+/, '')
+while $player1 == ''
+  puts 'Not a valid name, enter your name please'
+  $player1 = gets.chomp.gsub(/\s+/, '')
+end
+puts
+
+puts 'Player 2, enter your name please'
+$player2 = gets.chomp.gsub(/\s+/, '')
+while $player2 == ''
+  puts 'Not a valid name, enter your name please'
+  $player2 = gets.chomp.gsub(/\s+/, '')
+end
+puts
+
+puts "#{$player1.capitalize} choose 'X' or 'O'"
+$choice = gets.chomp
+
+until $choice.include?('X') || $choice.include?('O')
+  puts "wrong value, choose 'X' or 'O'."
+  $choice = gets.chomp
+end
+$choice2 = 'O' if $choice == 'X'
+$choice2 = 'X' if $choice == 'O'
+
+puts "\nCool! #{$player1.capitalize}'s move is represented by '#{$choice}' and #{$player2.capitalize}'s move is represented by '#{$choice2}'."
+puts "\nNow, choose a number on the board to make your move\n\n"
+
+def display_board(gameboard)
+  gameboard.each do |row|
+    row.each do |c|
+      print c
+    end
+    puts
+  end
+end
+
+def placement(gameboard, pos, player)
+  sym = ''
+  if player == 'player1'
+    sym = " #{$choice} "
+    $player1_positions.push(pos)
+  end
+  if player == 'player2'
+    sym = " #{$choice2} "
+    $player2_positions.push(pos)
+  end
+
+  while pos < 1 || pos > 9
+    puts 'Wrong position given, please enter a number between 1 and 9'
+    puts 'Try again'
+    pos = gets.chomp.to_i
+    while $player1_positions.include?(pos) || $player2_positions.include?(pos)
+      puts 'position already taken, please enter a new one'
+      pos = gets.chomp.to_i
+    end
+  end
+
+  if pos == 1
+    gameboard[1][1] = sym
+  elsif pos == 2
+    gameboard[1][3] = sym
+  elsif pos == 3
+    gameboard[1][5] = sym
+  elsif pos == 4
+    gameboard[3][1] = sym
+  elsif pos == 5
+    gameboard[3][3] = sym
+  elsif pos == 6
+    gameboard[3][5] = sym
+  elsif pos == 7
+    gameboard[5][1] = sym
+  elsif pos == 8
+    gameboard[5][3] = sym
+  elsif pos == 9
+    gameboard[5][5] = sym
+  else
+    puts 'Wrong position given, enter a number between 1 and 9'
+  end
+end
+
+def winner(winning)
+  winning.each do |cases|
+    return "Congratulations #{$player1.capitalize}, you win!!!" if (cases - $player1_positions).empty?
+    return "Congratulations #{$player2.capitalize}, you win!!!" if (cases - $player2_positions).empty?
+    return 'draw game (:'.upcase if $player1_positions.size + $player2_positions.size == 9
+  end
+  ''
+end
+
+display_board(fakeboard)
+
+loop do
+  puts "\n#{$player1.capitalize}, make your move"
+  pos1 = gets.chomp.to_i
+  while $player1_positions.include?(pos1) || $player2_positions.include?(pos1)
+    puts "position already taken, please enter a new one #{$player1.capitalize}"
+    pos1 = gets.chomp.to_i
+  end
+  placement(gameboard, pos1, 'player1')
+  puts 'Now your move is displayed on the board !'
+  display_board(gameboard)
+  winner(winning)
+  result = winner(winning)
+  if result.length.positive?
+    puts result
+    break
+  end
+
+  puts "#{$player2.capitalize}, make your move"
+  pos2 = gets.chomp.to_i
+  while $player2_positions.include?(pos2) || $player1_positions.include?(pos2)
+    puts "position already taken, please enter a new one #{$player2.capitalize} "
+    pos2 = gets.chomp.to_i
+  end
+  placement(gameboard, pos2, 'player2')
+  puts 'Now your move is displayed on the board !'
+  display_board(gameboard)
+  winner(winning)
+  result = winner(winning)
+  if result.length.positive?
+    puts result
+    break
+  end
+end
+puts "\nPlay Again ?"
