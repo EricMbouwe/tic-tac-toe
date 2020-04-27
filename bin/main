@@ -142,7 +142,7 @@ display_board(fakeboard)
 
 loop do
   puts "\n#{$player1.capitalize}, make your move"
-  pos1 = gets.chomp.to_i
+ pos1 = gets.chomp.to_i 
   while $player1_positions.include?(pos1) || $player2_positions.include?(pos1)
     puts "position already taken, please enter a new one #{$player1.capitalize}"
     pos1 = gets.chomp.to_i
