@@ -63,11 +63,11 @@ class Game
   end
 
   def winner(winning, player1, player2)
-	winning.each do |list|
-	  return "Congratulations #{player1.name.capitalize}, you win!!!" if (list - player1.positions).empty?
-	  return "Congratulations #{player2.name.capitalize}, you win!!!" if (list - player2.positions).empty?
-	  return 'draw game (:'.upcase if player1.positions.size + player2.positions.size == 9
-	end
-	''
+    winning.each do |list|
+      return "Congratulations #{player1.name.capitalize}, you win!!!" if (list - player1.positions).empty?
+      return "Congratulations #{player2.name.capitalize}, you win!!!" if (list - player2.positions).empty?
+      return 'draw game (:'.upcase if player1.positions.size + player2.positions.size == 9
+    end
+    ''
   end
 end
