@@ -1,11 +1,10 @@
-require_relative 'player'
+require_relative '../lib/player'
 
 class Game
   attr_accessor :board
+  attr_reader :winning
 
-  def initialize(_player1, _player2)
-    @player1 = Player.new
-    @player2 = Player.new
+  def initialize
     @board = [
       ['-------------'],
       ['|', '   ', '|', '   ', '|', '   ', '|'],
@@ -15,6 +14,21 @@ class Game
       ['|', '   ', '|', '   ', '|', '   ', '|'],
       ['-------------']
     ]
+    @winning = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+  end
+
+  def add_player
+    player = Player.new
+    player
+  end
+
+  def display_board(gameboard)
+    gameboard.each do |row|
+      row.each do |c|
+        print c
+      end
+      puts
+    end
   end
 
   def choose_symbol(choice, player1, player2)
@@ -26,27 +40,34 @@ class Game
     end
   end
 
-  def check_move(gamebord, position)
-	while pos < 1 || pos > 9
-		'Wrong position given, please enter a number between 1 and 9'
-	end
-	position
+  def check_move(position)
+    if position < 1 || position > 9
+      invalid_move
+    end
   end
 
-  def check_taken_position(gameboard, position, player1, player2)
-	while player1.positions.include?(position) || player2.positions.include?(position)
-		'position already taken, please enter a new one'
-	end
-	position
+  def invalid_move
+    'Wrong position given, please enter a number between 1 and 9'
   end
 
-  def winner(winning)
-	winning.each do |cases|
-	  return "Congratulations #{player1.capitalize}, you win!!!" if (cases - player1.positions).empty?
-	  return "Congratulations #{player2.capitalize}, you win!!!" if (cases - player2.positions).empty?
+  def check_taken_position(position, player1, player2)
+    if player1.positions.include?(position) || player2.positions.include?(position)
+      invalid_position
+    elsif position < 1 || position > 9
+      invalid_move
+    end
+  end
+
+  def invalid_position
+    'Position taken, please enter a new one'
+  end
+
+  def winner(winning, player1, player2)
+	winning.each do |list|
+	  return "Congratulations #{player1.name.capitalize}, you win!!!" if (list - player1.positions).empty?
+	  return "Congratulations #{player2.name.capitalize}, you win!!!" if (list - player2.positions).empty?
 	  return 'draw game (:'.upcase if player1.positions.size + player2.positions.size == 9
 	end
 	''
   end
-
 end
