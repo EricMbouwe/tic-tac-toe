@@ -64,7 +64,11 @@ class Game
     winning.each do |list|
       return "Congratulations #{player1.name.capitalize}, you win!!!" if (list - player1.positions).empty?
       return "Congratulations #{player2.name.capitalize}, you win!!!" if (list - player2.positions).empty?
+<<<<<<< HEAD:lib/game.rb
       return 'Draw (:'.upcase if player1.positions.size + player2.positions.size == 9
+=======
+      return 'draw game (:'.upcase if player1.positions.size + player2.positions.size == 9
+>>>>>>> 3862ee460cab09ef09a670c19756f12f8dfd100f:lib/Game.rb
     end
     ''
   end
