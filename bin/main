@@ -54,15 +54,20 @@ game.display_board(fakeboard)
 loop do
   puts "\n#{name1.capitalize}, make your move"
   pos1 = gets.chomp.to_i
-  # game.check_move(pos1)
-  # while game.check_move(pos1)
-  #   puts game.invalid_move
-  #   pos1 = gets.chomp.to_i
-  # end
+
+  while game.check_move(pos1)
+    puts game.invalid_move
+    pos1 = gets.chomp.to_i
+  end
   while game.check_taken_position(pos1, player1, player2)
     puts game.invalid_position
     pos1 = gets.chomp.to_i
+    while game.check_move(pos1)
+      puts puts game.invalid_move
+      pos1 = gets.chomp.to_i
+    end
   end
+
   player1.move(game.board, pos1, sym1)
   puts 'Now your move is displayed on the board !'
   game.display_board(game.board)
@@ -75,7 +80,7 @@ loop do
 
   puts "\n#{name2.capitalize}, make your move"
   pos2 = gets.chomp.to_i
-  game.check_move(pos2)
+
   while game.check_move(pos2)
     puts game.invalid_move
     pos2 = gets.chomp.to_i
@@ -83,7 +88,12 @@ loop do
   while game.check_taken_position(pos2, player1, player2)
     puts game.invalid_position
     pos2 = gets.chomp.to_i
+    while game.check_move(pos2)
+      puts puts game.invalid_move
+      pos2 = gets.chomp.to_i
+    end
   end
+  
   player2.move(game.board, pos2, sym2)
   puts 'Now your move is displayed on the board !'
   game.display_board(game.board)
