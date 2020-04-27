@@ -1,6 +1,6 @@
 # Tic Tac Toe game
 
-![screenshot](/images/screenshot.png)
+![screenshot](./images/screenshot.png)
 
 # Game rules
 
