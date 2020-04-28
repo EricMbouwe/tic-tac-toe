@@ -20,7 +20,7 @@ fakeboard = [
 puts 'Welcome to the Tic Tac Toe game'
 puts 'I hope that you will have fun ):'
 
-puts '\nPlayer 1, enter your name please'
+puts "\nPlayer 1, enter your name please"
 name1 = gets.chomp.gsub(/\s+/, '')
 while name1 == ''
   puts 'Not a valid name, enter your name please'
@@ -28,7 +28,7 @@ while name1 == ''
 end
 player1.name = name1
 
-puts '\nPlayer 2, enter your name please'
+puts "\nPlayer 2, enter your name please"
 name2 = gets.chomp.gsub(/\s+/, '')
 while name2 == ''
   puts 'Not a valid name, enter your name please'
