@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# frozen_string_literal: true
 
 require_relative '../lib/player'
 require_relative '../lib/game'
@@ -46,7 +45,8 @@ end
 game.choose_symbol(sym1, player1, player2)
 sym2 = player2.sym
 
-puts "\nCool! #{name1.capitalize}'s move is represented by '#{sym1}' and #{name2.capitalize}'s move is represented by '#{sym2}'."
+puts "\nCool! #{name1.capitalize}'s move is represented by '#{sym1}'
+      and #{name2.capitalize}'s move is represented by '#{sym2}'."
 puts "\nNow, choose a number on the board to make your move\n\n"
 
 game.display_board(fakeboard)
@@ -54,11 +54,6 @@ game.display_board(fakeboard)
 loop do
   puts "\n#{name1.capitalize}, make your move"
   pos1 = gets.chomp.to_i
-  # game.check_move(pos1)
-  # while game.check_move(pos1)
-  #   puts game.invalid_move
-  #   pos1 = gets.chomp.to_i
-  # end
   while game.check_taken_position(pos1, player1, player2)
     puts game.invalid_position
     pos1 = gets.chomp.to_i
@@ -66,7 +61,6 @@ loop do
   player1.move(game.board, pos1, sym1)
   puts 'Now your move is displayed on the board !'
   game.display_board(game.board)
-  game.winner(game.winning, player1, player2)
   result = game.winner(game.winning, player1, player2)
   if result.length.positive?
     puts result
@@ -76,10 +70,6 @@ loop do
   puts "\n#{name2.capitalize}, make your move"
   pos2 = gets.chomp.to_i
   game.check_move(pos2)
-  while game.check_move(pos2)
-    puts game.invalid_move
-    pos2 = gets.chomp.to_i
-  end
   while game.check_taken_position(pos2, player1, player2)
     puts game.invalid_position
     pos2 = gets.chomp.to_i
@@ -87,11 +77,9 @@ loop do
   player2.move(game.board, pos2, sym2)
   puts 'Now your move is displayed on the board !'
   game.display_board(game.board)
-  game.winner(game.winning, player1, player2)
   result = game.winner(game.winning, player1, player2)
   if result.length.positive?
     puts result
     break
   end
 end
-puts "\nPlay Again ?"
