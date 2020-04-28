@@ -67,7 +67,7 @@ class Game
     winning.each do |list|
       return "Congratulations #{player1.name.capitalize}, you win!!!" if (list - pos1).empty?
       return "Congratulations #{player2.name.capitalize}, you win!!!" if (list - pos2).empty?
-      return 'Draw (:'.upcase if pos1.size + pos2.size == 9 && (!(list - pos1).empty? && !(list - pos2).empty?)
+      return 'Draw (:'.upcase if (!(list - pos1).empty? && !(list - pos2).empty?) && pos1.size + pos2.size == 9
     end
     ''
   end
