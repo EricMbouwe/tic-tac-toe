@@ -49,11 +49,7 @@ class Game
   end
 
   def check_taken_position(position, player1, player2)
-    if position < 1 || position > 9
-      invalid_move
-    elsif player2.positions.include?(position) || player1.positions.include?(position)
-      invalid_position
-    end
+    invalid_position if player1.positions.include?(position) || player2.positions.include?(position)
   end
 
   def invalid_position
