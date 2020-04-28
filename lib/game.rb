@@ -48,12 +48,16 @@ class Game
     'Wrong position given, please enter a number between 1 and 9'
   end
 
-  def check_taken_position(position, player1, player2)
+  def position_taken(position, player1, player2)
     invalid_position if player1.positions.include?(position) || player2.positions.include?(position)
   end
 
   def invalid_position
     'Position taken, please enter a new one'
+  end
+
+  def bad_play(position, player1, player2)
+    check_move(position) || position_taken(position, player1, player2)
   end
 
   def winner(winning, player1, player2)
