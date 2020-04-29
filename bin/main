@@ -1,0 +1,89 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/player'
+require_relative '../lib/game'
+
+game = Game.new
+player1 = game.add_player
+player2 = game.add_player
+
+fakeboard = [
+  ['-------------'],
+  ['|', ' 1 ', '|', ' 2 ', '|', ' 3 ', '|'],
+  ['-------------'],
+  ['|', ' 4 ', '|', ' 5 ', '|', ' 6 ', '|'],
+  ['-------------'],
+  ['|', ' 7 ', '|', ' 8 ', '|', ' 9 ', '|'],
+  ['-------------']
+]
+
+puts 'Welcome to the Tic Tac Toe game'
+puts 'I hope that you will have fun ):'
+
+puts "\nPlayer 1, enter your name please\n\n"
+name1 = gets.chomp.gsub(/\s+/, '')
+while name1 == ''
+  puts 'Not a valid name, enter your name please'
+  name1 = gets.chomp.gsub(/\s+/, '')
+end
+player1.name = name1
+
+puts "\nPlayer 2, enter your name please\n\n"
+name2 = gets.chomp.gsub(/\s+/, '')
+while name2 == ''
+  puts 'Not a valid name, enter your name please'
+  name2 = gets.chomp.gsub(/\s+/, '')
+end
+player2.name = name2
+
+puts "\n#{name1.capitalize} choose 'X' or 'O'"
+sym1 = gets.chomp
+until sym1.include?('X') || sym1.include?('O')
+  puts "wrong value, choose 'X' or 'O'."
+  sym1 = gets.chomp
+end
+game.choose_symbol(sym1, player1, player2)
+sym2 = player2.sym
+
+print "\nCool! #{name1.capitalize}'s move is represented by '#{sym1}' "
+print "and #{name2.capitalize}'s move is represented by '#{sym2}'.\n"
+puts "\nNow, choose a number on the board to make your move\n\n"
+
+game.display_board(fakeboard)
+
+loop do
+  puts "\n#{name1.capitalize}, make your move"
+  pos1 = gets.chomp.to_i
+  while game.bad_play?(pos1, player1, player2)
+    puts game.invalid_move if game.bad_move?(pos1)
+    puts game.invalid_position if game.position_taken?(pos1, player1, player2)
+    pos1 = gets.chomp.to_i
+  end
+
+  player1.move(game.board, pos1, sym1)
+  puts 'Now your move is displayed on the board !'
+  game.display_board(game.board)
+  result = game.winner(game.winning, player1, player2)
+  if result.length.positive?
+    puts result
+    break
+  end
+
+  puts "\n#{name2.capitalize}, make your move"
+  pos2 = gets.chomp.to_i
+  while game.bad_play?(pos2, player1, player2)
+    puts game.invalid_move if game.bad_move?(pos2)
+    puts game.invalid_position if game.position_taken?(pos2, player1, player2)
+    pos2 = gets.chomp.to_i
+  end
+
+  player2.move(game.board, pos2, sym2)
+  puts 'Now your move is displayed on the board !'
+  game.display_board(game.board)
+  result = game.winner(game.winning, player1, player2)
+  if result.length.positive?
+    puts result
+    break
+  end
+end
+
