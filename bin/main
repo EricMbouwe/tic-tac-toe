@@ -54,9 +54,9 @@ game.display_board(fakeboard)
 loop do
   puts "\n#{name1.capitalize}, make your move"
   pos1 = gets.chomp.to_i
-  while game.bad_play(pos1, player1, player2)
-    puts game.invalid_move if game.check_move(pos1)
-    puts game.invalid_position if game.position_taken(pos1, player1, player2)
+  while game.bad_play?(pos1, player1, player2)
+    puts game.invalid_move if game.bad_move?(pos1)
+    puts game.invalid_position if game.position_taken?(pos1, player1, player2)
     pos1 = gets.chomp.to_i
   end
 
@@ -71,9 +71,9 @@ loop do
 
   puts "\n#{name2.capitalize}, make your move"
   pos2 = gets.chomp.to_i
-  while game.bad_play(pos2, player1, player2)
-    puts game.invalid_move if game.check_move(pos2)
-    puts game.invalid_position if game.position_taken(pos2, player1, player2)
+  while game.bad_play?(pos2, player1, player2)
+    puts game.invalid_move if game.bad_move?(pos2)
+    puts game.invalid_position if game.position_taken?(pos2, player1, player2)
     pos2 = gets.chomp.to_i
   end
 
