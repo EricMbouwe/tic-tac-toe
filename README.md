@@ -43,9 +43,17 @@ ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin17]
 ### Installing
 - clone the project locally
 
-- In your terminal, change directory to the root of the project
 
-- In your terminal, run `bin/main` 
+### How to start the game 
+
+- In your terminal, change directory to the root of the project  `cd tic-tac-toe` 
+
+You should see something like this :
+```
+eric@eric-X501A1:~/Documents/MICROVERSE PROJECTS/RUBY/tic-tac-toe$
+``` 
+- And then run `bin/main` 
+
 
 ### Live version of the game
 
