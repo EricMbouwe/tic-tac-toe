@@ -7,7 +7,7 @@ class Player
     @sym = ''
   end
 
-  def move(gameboard, position, sym)
+  def move()
     positions.push(position)
     new_array = [[1, 1], [1, 3], [1, 5], [3, 1], [3, 3], [3, 5], [5, 1], [5, 3], [5, 5]]
     element = new_array[position - 1]
