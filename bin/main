@@ -51,38 +51,29 @@ puts "\nNow, choose a number on the board to make your move\n\n"
 
 game.display_board(fakeboard)
 
-loop do
-  puts "\n#{name1.capitalize}, make your move"
-  pos1 = gets.chomp.to_i
-  while game.bad_play(pos1, player1, player2)
-    puts game.invalid_move if game.check_move(pos1)
-    puts game.invalid_position if game.position_taken(pos1, player1, player2)
-    pos1 = gets.chomp.to_i
+current_player = player1
+count = 0
+keepgoing = true
+
+while keepgoing
+  puts "\n#{current_player.name.capitalize}, make your move"
+  pos = gets.chomp.to_i
+  while game.bad_play(pos, player1, player2)
+    puts game.invalid_move if game.check_move(pos)
+    puts game.invalid_position if game.position_taken(pos, player1, player2)
+    pos = gets.chomp.to_i
   end
 
-  player1.move(game.board, pos1, sym1)
+  current_player.move(game.board, pos, current_player.sym)
   puts 'Now your move is displayed on the board !'
   game.display_board(game.board)
-  result = game.winner(game.winning, player1, player2)
+  result = game.winner(game.winning, current_player)
   if result.length.positive?
     puts result
-    break
+    keepgoing = false
   end
 
-  puts "\n#{name2.capitalize}, make your move"
-  pos2 = gets.chomp.to_i
-  while game.bad_play(pos2, player1, player2)
-    puts game.invalid_move if game.check_move(pos2)
-    puts game.invalid_position if game.position_taken(pos2, player1, player2)
-    pos2 = gets.chomp.to_i
-  end
-
-  player2.move(game.board, pos2, sym2)
-  puts 'Now your move is displayed on the board !'
-  game.display_board(game.board)
-  result = game.winner(game.winning, player1, player2)
-  if result.length.positive?
-    puts result
-    break
-  end
+  count += 1
+  current_player = current_player == player1 ? player2 : player1
+  return puts 'Draw Game' if count == 9 && !result.length.positive?
 end
