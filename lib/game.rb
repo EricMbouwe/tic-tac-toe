@@ -18,8 +18,7 @@ class Game
   end
 
   def add_player
-    player = Player.new
-    player
+    return player = Player.new
   end
 
   def display_board(gameboard)
