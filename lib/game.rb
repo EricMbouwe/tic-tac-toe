@@ -39,15 +39,15 @@ class Game
     end
   end
 
-  def check_move(position)
-    position < 1 || position > 9
+  def valid_move?(position)
+    position.between?(1, 9)
   end
 
   def invalid_move
     'Wrong position given, please enter a number between 1 and 9'
   end
 
-  def position_taken(position, player1, player2)
+  def position_taken?(position, player1, player2)
     player1.positions.include?(position) || player2.positions.include?(position)
   end
 
@@ -55,8 +55,8 @@ class Game
     'Position taken, please enter a new one'
   end
 
-  def bad_play(position, player1, player2)
-    check_move(position) || position_taken(position, player1, player2)
+  def bad_play?(position, player1, player2)
+    !valid_move?(position) || position_taken?(position, player1, player2)
   end
 
   def winner(winning, player)

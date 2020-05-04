@@ -58,9 +58,9 @@ keepgoing = true
 while keepgoing
   puts "\n#{current_player.name.capitalize}, make your move"
   pos = gets.chomp.to_i
-  while game.bad_play(pos, player1, player2)
-    puts game.invalid_move if game.check_move(pos)
-    puts game.invalid_position if game.position_taken(pos, player1, player2)
+  while game.bad_play?(pos, player1, player2)
+    puts game.invalid_move unless game.valid_move?(pos)
+    puts game.invalid_position if game.position_taken?(pos, player1, player2)
     pos = gets.chomp.to_i
   end
 
