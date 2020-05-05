@@ -5,8 +5,7 @@ describe 'Game' do
   game = Game.new
   player1 = Player.new
   player2 = Player.new
-  let(:choice) { 'O' }
-  let(:position) { 1 }
+
   gameboard =
     [
       ['-------------'],
@@ -28,6 +27,7 @@ describe 'Game' do
   end
 
   describe '#choose_symbol' do
+    let(:choice) { 'O' }
     it 'should set a sym to player1' do
       game.choose_symbol(choice, player1, player2)
       expect(player1.sym).to eql('O')
@@ -52,22 +52,25 @@ describe 'Game' do
   end
 
   describe '#position_taken?' do
-    it 'should take position of both players and players as arguments and check if the position is taken' do
-      game.position_taken?(position, player1, player2)
-      player1.positions.push(position)
-      player2.positions.push(position)
-      player1.positions.each do |number|
-        expect(game.position_taken?(number, player1, player2)).to be true
-      end
+    player1.positions = [1, 2, 3, 9, 4]
+    player2.positions = [8, 5, 6]
+    let(:pos) { 3 }
+    it 'should take positions of both players and check if the position is taken or not' do
+      expect(game.position_taken?(pos, player1, player2)).to be true
     end
   end
 
   describe '#bad_play?' do
-    let(:pos) { 11 }
-    it 'should check if the given numbers are between 1 and 9 and also check if position is not already taken' do
-      expect(game.valid_move?(position)).to be true
-      expect(game.valid_move?(pos)).to be false
-      expect(game.position_taken?(position, player1, player2)).to be true
+    player1.positions = [1, 2, 3, 9, 4]
+    player2.positions = [8, 5, 6]
+    let(:pos1) { 11 }
+    let(:pos2) { 1 }
+    it 'should check if the given position is valid' do
+      expect(game.bad_play?(pos1, player1, player2)).to be true
+    end
+
+    it 'should check if the given position is taken or not' do
+      expect(game.bad_play?(pos2, player1, player2)).to be true
     end
   end
 
