@@ -45,9 +45,9 @@ end
 game.choose_symbol(sym1, player1, player2)
 sym2 = player2.sym
 
-puts "\nCool! #{name1.capitalize}'s move is represented by '#{sym1}'
-      and #{name2.capitalize}'s move is represented by '#{sym2}'."
-puts "\nNow, choose a number on the board to make your move\n\n"
+print "\nCool! #{name1.capitalize}'s move is represented by '#{sym1}' "
+print "and #{name2.capitalize}'s move is represented by '#{sym2}'."
+print "\nNow, choose a number on the board to make your move\n\n"
 
 game.display_board(fakeboard)
 

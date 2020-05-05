@@ -7,18 +7,6 @@ describe 'Player' do
     it 'should create an object without arguments' do
       player
     end
-
-    it 'should accept the instance variable name' do
-      name = player.instance_variable_get(:@name)
-    end
-
-    it 'should accep the instance variable positions which is equal to an empty array' do
-      positions = player.instance_variable_get(:@positions)
-    end
-
-    it 'should accep the instance variable sym which is equal to an empty string' do
-      sym = player.instance_variable_get(:@sym)
-    end
   end
 
   describe '#name' do
