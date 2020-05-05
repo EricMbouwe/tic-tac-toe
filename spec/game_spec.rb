@@ -72,14 +72,23 @@ describe 'Game' do
   end
 
   describe "#winner" do
-    it "should accep winning and player as arguments and to check if a player won or not" do
-      game.winner(winning, player1)
-      player1.positions.push(1)
-      player1.positions.push(2)
-      player1.positions.push(3)
-      winning.each do |winning_conds|
-        expect(player1.positions.include?(winning_conds[0]) && player1.positions.include?(winning_conds[1]) && player1.positions.include?(winning_conds[2])).to be true
-      end
+    player1.positions.push(1)
+    player1.positions.push(2)
+    player1.positions.push(3)
+    player1.name = 'eric'
+
+    player2.positions.push(8)
+    player2.positions.push(5)
+    player2.name = 'taty'
+
+    it "should set the current player as the game winner" do
+      result = game.winner(winning, player1)
+      expect(result.length.positive?).to be true
+    end
+
+    it "should return an empty string when there is no winner" do
+      result = game.winner(winning, player2)
+      expect(result.length.positive?).to be false
     end
   end
 end
