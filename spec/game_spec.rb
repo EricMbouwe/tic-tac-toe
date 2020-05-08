@@ -6,7 +6,7 @@ describe 'Game' do
   player1 = Player.new
   player2 = Player.new
 
-  gameboard =
+  let(:gameboard) {
     [
       ['-------------'],
       ['|', '   ', '|', '   ', '|', '   ', '|'],
@@ -15,7 +15,7 @@ describe 'Game' do
       ['-------------'],
       ['|', '   ', '|', '   ', '|', '   ', '|'],
       ['-------------']
-    ]
+    ] }
 
   let(:winning) { [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]] }
 
@@ -58,6 +58,10 @@ describe 'Game' do
     it 'should take positions of both players and check if the position is taken or not' do
       expect(game.position_taken?(pos, player1, player2)).to be true
     end
+
+    it 'should check if the given position is not taken' do
+      expect(game.position_taken?(pos, player1, player2)).not_to be false
+    end
   end
 
   describe '#bad_play?' do
@@ -69,8 +73,16 @@ describe 'Game' do
       expect(game.bad_play?(pos1, player1, player2)).to be true
     end
 
-    it 'should check if the given position is taken or not' do
+    it 'should check if the given position is not valid' do
+      expect(game.bad_play?(pos1, player1, player2)).not_to be false
+    end
+
+    it 'should check if the given position is taken' do
       expect(game.bad_play?(pos2, player1, player2)).to be true
+    end
+
+    it 'should check if the given position is not taken' do
+      expect(game.bad_play?(pos2, player1, player2)).not_to be false
     end
   end
 
@@ -88,7 +100,7 @@ describe 'Game' do
 
     it 'should return an empty string when there is no winner' do
       result = game.winner(winning, player2)
-      expect(result.length.positive?).to be false
+      expect(result.length.positive?).not_to be true
     end
   end
 end
