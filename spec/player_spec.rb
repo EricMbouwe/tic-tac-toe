@@ -1,4 +1,4 @@
-require 'player'
+require_relative '../lib/player'
 
 describe 'Player' do
   player = Player.new
