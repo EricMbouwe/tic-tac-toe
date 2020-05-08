@@ -6,6 +6,7 @@ describe 'Game' do
   player1 = Player.new
   player2 = Player.new
 
+  # rubocop:disable Style/BlockDelimiters
   let(:gameboard) {
     [
       ['-------------'],
@@ -15,7 +16,9 @@ describe 'Game' do
       ['-------------'],
       ['|', '   ', '|', '   ', '|', '   ', '|'],
       ['-------------']
-    ] }
+    ]
+  }
+  # rubocop:enable Style/BlockDelimiters
 
   let(:winning) { [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]] }
 
@@ -46,8 +49,8 @@ describe 'Game' do
       expect(game.valid_move?(pos1)).to be(true)
     end
 
-    it 'should check if the move is invalid' do
-      expect(game.valid_move?(pos2)).to be(false)
+    it 'should check if the move is not valid' do
+      expect(game.valid_move?(pos2)).not_to be(true)
     end
   end
 
