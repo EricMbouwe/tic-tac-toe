@@ -40,8 +40,8 @@ class Game
     end
   end
 
-  def bad_move?(position)
-    position < 1 || position > 9
+  def valid_move?(position)
+    position.between?(1, 9)
   end
 
   def invalid_move
@@ -57,17 +57,12 @@ class Game
   end
 
   def bad_play?(position, player1, player2)
-    bad_move?(position) || position_taken?(position, player1, player2)
+    !valid_move?(position) || position_taken?(position, player1, player2)
   end
 
-  def winner(winning, player1, player2)
-    pos1 = player1.positions
-    pos2 = player2.positions
-
+  def winner(winning, player)
     winning.each do |list|
-      return "Congratulations #{player1.name.capitalize}, you win!!!" if (list - pos1).empty?
-      return "Congratulations #{player2.name.capitalize}, you win!!!" if (list - pos2).empty?
-      return 'Draw (:'.upcase if (!(list - pos1).empty? && !(list - pos2).empty?) && pos1.size + pos2.size == 9
+      return "Congratulations #{player.name.capitalize}, you win!!!" if (list - player.positions).empty?
     end
     ''
   end
